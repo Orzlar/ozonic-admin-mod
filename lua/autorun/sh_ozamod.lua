@@ -50,7 +50,7 @@ end
 
 if CLIENT then
 	
-	local Tag = "ozamod/lua/"			
+	local Tag = "ozonic-admin-mod/lua/"			
 	--local Tag = ""     -- UNCOMMENT THIS LINE WHEN IN ADDONS FOLDER
 	
 	-- Wait 1 second ( to make sure its all been included. )
