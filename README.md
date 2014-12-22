@@ -9,6 +9,10 @@ Just a simple Administration mod for Garrysmod, sandbox gamemode made exclusivel
 
 <h4>OZLib functions</h4>
 
-`OZlib.AddChat(...) - Like text.AddText, but serversided `
+`OZLib.AddChat(...) - Like text.AddText, but serversided `
 
-`OZlib.ChatMessage(...) - As Above, but with OZA tag at start. `
+`OZLib.ChatMessage(...) - As Above, but with OZA tag at start. `
+
+`OZLib.FindPlayerByName(s) - Finds Player by partial name given, returns true if single person found.`
+
+`OZLib.FindPlayerBySteamID(s) - Finds player by their exact steamid.`

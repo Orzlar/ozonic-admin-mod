@@ -66,7 +66,8 @@ if SERVER then
 	
 	include( "../sql/sv_create.lua" )						-- Checks if Tables are up
 	include( "../sql/sv_load.lua" )							-- Loads said tables
-	include( "../module/colorfunc/sh_colorcc.lua" )			-- Color Chat and Console
+	include( "../module/sh_colorfunc.lua" )					-- Color Chat and Console
+	include( "../module/sv_findplayer.lua" )				-- Useful FindPlayer commands
 	include( "../initial/sh_teamsetup.lua" )				-- Team Set-up
 	include( "../initial/sv_playersetup.lua" )				-- Player Set-up	
 end
@@ -86,7 +87,7 @@ if CLIENT then
 	--]=]
 	
 	timer.Simple(1, function()
-		include( Tag .. "module/colorfunc/sh_colorcc.lua" )		-- Color Chat and Console
+		include( Tag .. "module/sh_colorfunc.lua" )				-- Color Chat and Console
 		include( Tag  .. "initial/sh_teamsetup.lua" )			-- Team Set-up
 	end)
 end
