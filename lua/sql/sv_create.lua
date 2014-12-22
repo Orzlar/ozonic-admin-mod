@@ -69,15 +69,14 @@ if(!sql.TableExists("OZA_groupperms")) then
 	local SQL = sql.Query([[CREATE TABLE OZA_groupperms (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	rank VARCHAR(32),
 	usekey VARCHAR(32),
-	canuse BOOLEAN,
 	cantarget INTEGER
 	)]])
 	
 	if(SQL != false) then
-		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,canuse,cantarget) VALUES (0,"OZA.GOTO",1,99) ]])
-		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,canuse,cantarget) VALUES (5,"OZA.PUNISH.KICK",1,7) ]])
-		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,canuse,cantarget) VALUES (5,"OZA.PUNISH.BAN",1,99) ]])
-		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,canuse,cantarget) VALUES (5,"OZA.PUNISH.UNBAN",1,99) ]])
+		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,cantarget) VALUES (0,"oza.goto",99) ]])
+		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,cantarget) VALUES (5,"oza.punish.kick",7) ]])
+		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,cantarget) VALUES (5,"oza.punish.ban",99) ]])
+		sql.Query([[ INSERT INTO OZA_groupperms(rank,usekey,cantarget) VALUES (5,"oza.punish.unban",99) ]])
 	
 		print("OZA_GROUPPERMS TABLE CREATED")
 	else
@@ -95,7 +94,6 @@ if(!sql.TableExists("OZA_userperms")) then
 	local SQL = sql.Query([[CREATE TABLE OZA_userperms (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	steamid VARCHAR(32),
 	usekey VARCHAR(32),
-	canuse BOOLEAN,
 	cantarget INTEGER
 	)]])
 	

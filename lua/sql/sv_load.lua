@@ -41,23 +41,14 @@ end
 	load GROUPPERMS table
 --]=]
 
-local groupperms = sql.Query([[ SELECT id,rank,usekey,canuse,cantarget FROM OZA_groupperms ]])
+local groupperms = sql.Query([[ SELECT id,rank,usekey,cantarget FROM OZA_groupperms ]])
 if(istable(groupperms)) then
 	
 	for k,v in pairs(groupperms) do
 		
-		local CanUse = false
-		if(v["canuse"] == "1") then CanUse = true end
+		OZA.groupperms[tonumber(v["rank"])][v["usekey"]] = tonumber(v["cantarget"])
 		
-		local Perm = {}
-		Perm["usekey"] = string.upper(v["usekey"])
-		Perm["canuse"] = CanUse
-		Perm["cantarget"] = tonumber(v["cantarget"])
-		Perm["id"] = tonumber(v["id"])
-		
-		table.Add(OZA.groupperms[tonumber(v["rank"])],{Perm})
 	end
-	
 else
 	print(" GROUP PERMISSIONS LOAD ERROR ")
 end

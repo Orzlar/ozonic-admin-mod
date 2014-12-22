@@ -18,8 +18,8 @@ if SERVER then
 		OZlib			- Table for functions
 		OZA.users		- Holds information of players	( OZA.users[steamid] = {id,name,steamid,groupid,groupname,ip} )
 		OZA.groups		- Holds information of groups	( OZA.groups[groupid] = {id,rank,groupname,color,defaultteam} )
-		OZA.groupperms	- Holds permissions for groups	( OZA.groupperms[rank] = {id,rank,usekey,canuse,cantarget} )
-		OZA.userperms	- Holds permission for players	( OZA.userperms[steamid] = {id,steamid,usekey,canuse,cantarget} )
+		OZA.groupperms	- Holds permissions for groups	( OZA.groupperms[rank] = permissiontablestructure )
+		OZA.userperms	- Holds permission for players	( OZA.userperms[steamid] = permissiontablestructure )
 		OZA.commands	- Holds functions for the mod	( OZA.commands["funcname"] = function(chattruefalse,...)
 	--]=]
 	
@@ -40,7 +40,7 @@ if SERVER then
 	OZA.broadcasttag	= "Ozonic Admin Mod"
 	OZA.color1 			= Color(255, 150, 0)
 	OZA.color2 			= Color(100, 150, 200)
-	OZA.version			= 8
+	OZA.version			= "0.0.10"
 	
 	
 	--[=[

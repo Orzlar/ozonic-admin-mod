@@ -54,7 +54,7 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 		IP = ply:IPAddress( )
 		for k,v in pairs(OZA.groups) do
 			if(v["defaultteam"]) then
-				groupname = k
+				groupname = v["groupname"]
 				groupid = v["id"]
 			end
 		end		
