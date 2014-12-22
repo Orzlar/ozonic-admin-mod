@@ -3,7 +3,7 @@ ozonic-admin-mod
 
 Just a simple Administration mod for Garrysmod, sandbox gamemode made exclusively for Oz Serious Build.
 
-<h4>OZA functions</h4> <h6>(for use inside the mod)</h6>
+<h4>OZA functions</h4>
 
 `OZA.SyncTeams() - Syncs teams to client `
 
