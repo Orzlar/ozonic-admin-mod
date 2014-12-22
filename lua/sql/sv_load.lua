@@ -10,7 +10,6 @@
 --[=[
 	Load GROUPS table
 --]=]
-print("1")
 local groups = sql.Query([[ SELECT id,rank,groupname,color,defaultteam FROM OZA_groups ]])
 if(istable(groups)) then
 

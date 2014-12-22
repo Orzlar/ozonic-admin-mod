@@ -99,6 +99,17 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 	local Query = [[ SELECT id,steamid,usekey,canuse,cantarget FROM OZA_userperms WHERE steamid = '%s' ]]
 	local SQL = sql.Query( string.format(Query, steamid ) )
 	if(istable(SQL)) then
+	
+		local Tab = SQL[1]
+		local CanUse = false
+		if(Tab["canuse"] == "1") then CanUse = true end
+		
+		OZA.userperms[Tab["steamid"]] = {}
+		OZA.userperms[Tab["steamid"]]["id"] = Tab["id"]
+		OZA.userperms[Tab["steamid"]]["steamid"] = Tab["steamid"]
+		OZA.userperms[Tab["steamid"]]["usekey"] = Tab["usekey"]
+		OZA.userperms[Tab["steamid"]]["canuse"] = CanUse
+		OZA.userperms[Tab["steamid"]]["cantarget"] = tonumber(Tab["cantarget"])
 		
 	end
 	
