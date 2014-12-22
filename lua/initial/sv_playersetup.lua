@@ -1,4 +1,4 @@
---[==========================================================================================[
+--[====================[
 										Ozonic Admin Mod
 							
 							File:			Player Set-up
@@ -6,7 +6,7 @@
 							Desc:	PlayerSpawn and PlayerInitialSpawn hooks
 									To set-up players team and such
 									
---]==========================================================================================]
+--]====================]
 
 hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 
