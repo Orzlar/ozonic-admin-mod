@@ -40,7 +40,7 @@ if SERVER then
 	OZA.broadcasttag	= "Ozonic Admin Mod"
 	OZA.color1 			= Color(255, 150, 0)
 	OZA.color2 			= Color(100, 150, 200)
-	OZA.ver				= 5
+	include("../version.lua")
 	
 	
 	--[=[
@@ -48,7 +48,7 @@ if SERVER then
 	--]=]
 	
 	print( "[OZA] Plugin Loaded!")
-	print( "[OZA] Version: " .. OZA.ver )
+	print( "[OZA] Version: " .. OZA.version )
 	
 	
 	--[=[
