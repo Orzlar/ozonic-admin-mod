@@ -40,7 +40,7 @@ if SERVER then
 	OZA.broadcasttag	= "Ozonic Admin Mod"
 	OZA.color1 			= Color(255, 150, 0)
 	OZA.color2 			= Color(100, 150, 200)
-	OZ.version			= 7
+	OZA.version			= 8
 	
 	
 	--[=[

@@ -50,12 +50,12 @@ if(istable(groupperms)) then
 		if(v["canuse"] == "1") then CanUse = true end
 		
 		local Perm = {}
-		Perm["usekey"] = v["usekey"]
+		Perm["usekey"] = string.upper(v["usekey"])
 		Perm["canuse"] = CanUse
 		Perm["cantarget"] = tonumber(v["cantarget"])
 		Perm["id"] = tonumber(v["id"])
 		
-		table.Add(OZA.groupperms[v["rank"]],{Perm})
+		table.Add(OZA.groupperms[tonumber(v["rank"])],{Perm})
 	end
 	
 else

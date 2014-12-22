@@ -7,6 +7,7 @@ Just a simple Administration mod for Garrysmod, sandbox gamemode made exclusivel
 
 `OZA.SyncTeams() - Syncs teams to client `
 
+
 <h4>OZLib functions</h4>
 
 `OZLib.AddChat(...) - Like text.AddText, but serversided `

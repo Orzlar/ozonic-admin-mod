@@ -72,10 +72,10 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 	--]=]
 	
 	OZA.users[ply:SteamID()] = {}
-	OZA.users[ply:SteamID()]["ID"] = ID
+	OZA.users[ply:SteamID()]["ID"] = tonumber(ID)
 	OZA.users[ply:SteamID()]["name"] = name
 	OZA.users[ply:SteamID()]["steamid"] = steamid
-	OZA.users[ply:SteamID()]["groupid"] = groupid
+	OZA.users[ply:SteamID()]["groupid"] = tonumber(groupid)
 	OZA.users[ply:SteamID()]["groupname"] = groupname
 	OZA.users[ply:SteamID()]["IP"] = IP
 	

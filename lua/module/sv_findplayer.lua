@@ -16,7 +16,7 @@ OZLib.FindPlayerByName = function(s,b)
 	for k,v in pairs(player.GetAll()) do 
 		if(string.find(string.lower(v:Nick()),string.lower(s))) then
 			n = n + 1
-			if(b)
+			if(b) then
 				table.insert(e,v)
 			else
 				e = v
