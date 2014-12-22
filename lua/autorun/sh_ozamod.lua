@@ -47,7 +47,8 @@ if SERVER then
 		Initial Printing for debugging issues
 	--]=]
 	
-	print( "[OZA] Plugin Loaded!" .. OZA.ver )
+	print( "[OZA] Plugin Loaded!")
+	print( "[OZA] Version: " .. OZA.ver )
 	
 	
 	--[=[

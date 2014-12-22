@@ -10,7 +10,7 @@
 --[=[
 	Load GROUPS table
 --]=]
-
+print("1")
 local groups = sql.Query([[ SELECT id,rank,groupname,color,defaultteam FROM OZA_groups ]])
 if(istable(groups)) then
 
@@ -27,9 +27,10 @@ if(istable(groups)) then
 		OZA.groups[tonumber(v["id"])]["rank"] = tonumber(v["rank"])
 		OZA.groups[tonumber(v["id"])]["groupname"] = v["groupname"]
 		OZA.groups[tonumber(v["id"])]["color"] = COLOR
-		OZA.groups[tonumber[v["id"])]["defaultteam"] = DefaultTeam
+		OZA.groups[tonumber(v["id"])]["defaultteam"] = DefaultTeam
 		
-		OZA.groupperms[tonumber(value["rank"])] = {}
+		OZA.groupperms[tonumber(v["rank"])] = {}
+		
 	end
 	
 else
@@ -55,7 +56,7 @@ if(istable(groupperms)) then
 		Perm["cantarget"] = tonumber(v["cantarget"])
 		Perm["id"] = tonumber(v["id"])
 		
-		table.Add(OZA.groupperms[v["rank"],{Perm})
+		table.Add(OZA.groupperms[v["rank"]],{Perm})
 	end
 	
 else
