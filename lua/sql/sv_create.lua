@@ -1,13 +1,18 @@
---------------------------------------------------------------------------
---						Ozonic Admin Mod								--
---																		--
---				File: SQL Creation										--
---				Info: Creates initial tables and fills them				--
---				with default stuff.										--
---------------------------------------------------------------------------
+--[==========================================================================================[
+										Ozonic Admin Mod
+							
+							File:			SQL Create Tables
+							
+							Desc:	Create tables if they do not exist.
+
+--]==========================================================================================]
 
 
--- Users Table. ( Fills on player join )
+
+--[=[
+	USERS table
+--]=]
+
 if(!sql.TableExists("OZA_users")) then
 	local SQL = sql.Query([[ CREATE TABLE OZA_users ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	name VARCHAR(32),
@@ -28,7 +33,10 @@ if(!sql.TableExists("OZA_users")) then
 end
 
 
--- Groups Table. ( Filled on command )
+--[=[
+	GROUPS table
+--]=]
+
 if(!sql.TableExists("OZA_groups")) then
 	local SQL = sql.Query([[ CREATE TABLE OZA_groups ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	rank INTEGER,
@@ -54,7 +62,10 @@ if(!sql.TableExists("OZA_groups")) then
 end
 
 
--- GROUP PERMISSIONS TABLE ( Filled on command )
+--[=[
+	GROUPPERMS table
+--]=]
+
 if(!sql.TableExists("OZA_groupperms")) then
 	local SQL = sql.Query([[CREATE TABLE OZA_groupperms (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	rank VARCHAR(32),
@@ -77,7 +88,10 @@ if(!sql.TableExists("OZA_groupperms")) then
 end
 
 
--- USER PERMISSIONS ( FILLD ON COMMAND )
+--[=[
+	USERPERMS table
+--]=]
+
 if(!sql.TableExists("OZA_userperms")) then
 	local SQL = sql.Query([[CREATE TABLE OZA_userperms (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	steamid VARCHAR(32),

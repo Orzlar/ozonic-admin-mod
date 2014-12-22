@@ -1,61 +1,91 @@
---------------------------------------------------------------------------
---						Ozonic Admin Mod								--
---			Created by: 	Orzlar										--
---			Inspired by:	ULX											--
---			For:			OZONIC Server								--
---																		--
---																		--
---			Initial file for Server AND Client.							--
---																		--
---																		--
---------------------------------------------------------------------------
+--[==========================================================================================[
+										Ozonic Admin Mod
+							
+							Created by: 	Orzlar
+							Inspired by:	ULX
+							For:			OZONIC Server
 
+							File:			Core file.
 
---ServerSide
+--]==========================================================================================]
+							
 if SERVER then
 
-	--Declare all the tables.
-	OZA = {}	-- Will hold information of players, groups and such.
-	OZLib = {} 	-- For helpful functions like FindPlayerByName
+	--[=[
+		Declare Tables for use later.
+		
+		OZA 			- Table for information
+		OZlib			- Table for functions
+		OZA.users		- Holds information of players	( OZA.users[steamid] = {id,name,steamid,groupid,groupname,ip} )
+		OZA.groups		- Holds information of groups	( OZA.groups[groupid] = {id,rank,groupname,color,defaultteam} )
+		OZA.groupperms	- Holds permissions for groups	( OZA.groupperms[rank] = {id,rank,usekey,canuse,cantarget} )
+		OZA.userperms	- Holds permission for players	( OZA.userperms[steamid] = {id,steamid,usekey,canuse,cantarget} )
+		OZA.commands	- Holds functions for the mod	( OZA.commands["funcname"] = function(chattruefalse,...)
+	--]=]
 	
-	OZA.users = {}		-- OZA.users["steamid"] = {id, name, steamid, groupid,groupname, IP}
-	OZA.groups = {}		-- OZA.groups["groupname"] = {id, rank, groupname, color, defaultteam}
-	OZA.groupperms = {}	-- OZA.groupperms["groupname"] = {id,rank, usekey ,canuse , cantarget}
-	OZA.userperms = {}	-- OZA.userperms["steamid"] = {id, steamid,usekey,canuse,cantarget}
-	OZA.commands = {}	-- OZA.commands["commandsay"] = function( //TODO\\ ) -----------------------------------
-	
-	-- TAGS AND DEFAULT COLORS AND SUCH
-	OZA.tag = "[OZA]"
-	OZA.broadcasttag = "Ozonic Admin Mod"
-	OZA.color1 = Color(255,150,0)
-	OZA.color2 = Color(100,150,200)
-	
-	-- Initial Printing and debug.
-	print( "[OZA] Plugin Loaded!" )
+	OZA 			= {}
+	OZLib 			= {}
+	OZA.users 		= {}
+	OZA.groups 		= {}
+	OZA.groupperms 	= {}
+	OZA.userperms 	= {}
+	OZA.commands 	= {}
 	
 	
-	-- CLIENT STUFF
+	--[=[
+		Tags and Colors saved
+	--]=]
+	
+	OZA.tag 			= "[OZA]"
+	OZA.broadcasttag	= "Ozonic Admin Mod"
+	OZA.color1 			= Color(255, 150, 0)
+	OZA.color2 			= Color(100, 150, 200)
+	OZA.ver				= 5
+	
+	
+	--[=[
+		Initial Printing for debugging issues
+	--]=]
+	
+	print( "[OZA] Plugin Loaded!" .. OZA.ver )
+	
+	
+	--[=[
+		Send Client Files
+	--]=]
+	
 	AddCSLuaFile( )
-	AddCSLuaFile("../module/colorstuff/sh_colorstruff.lua") -- Color Stuff
-	AddCSLuaFile("../initial/sh_teamsetup.lua")				-- Team Setup
+	AddCSLuaFile( "../module/colorfunc/sh_colorcc.lua" )	-- Color Chat and Console
+	AddCSLuaFile( "../initial/sh_teamsetup.lua" )			-- Team Set-up
 	
 	
-	-- SERVER STUFF
-	include("../sql/sv_create.lua")							-- Checks if Tables are up
-	include("../sql/sv_load.lua")							-- Loads said tables
-	include("../module/colorstuff/sh_colorstuff.lua")		-- Color Stuff
-	include("../initial/sh_teamsetup.lua")					-- Setup Teams
-	include("../initial/sv_playersetup.lua")				-- Player Setup	
+	--[=[
+		Include Server Files
+	--]=]
+	
+	include( "../sql/sv_create.lua" )						-- Checks if Tables are up
+	include( "../sql/sv_load.lua" )							-- Loads said tables
+	include( "../module/colorfunc/sh_colorcc.lua" )			-- Color Chat and Console
+	include( "../initial/sh_teamsetup.lua" )				-- Team Set-up
+	include( "../initial/sv_playersetup.lua" )				-- Player Set-up	
 end
+
 
 if CLIENT then
 	
-	local Tag = "ozonic-admin-mod/lua/"			
-	--local Tag = ""     -- UNCOMMENT THIS LINE WHEN IN ADDONS FOLDER
+	--[=[
+		Tag is for "garrysmod/lua/ozonic-admin-mod/lua/", when in addons it should be ""
+	--]=]
 	
-	-- Wait 1 second ( to make sure its all been included. )
+	local Tag = "ozonic-admin-mod/lua/"			
+	
+	
+	--[=[
+		Include Client Files
+	--]=]
+	
 	timer.Simple(1, function()
-		include(Tag.."module/colorstuff/sh_colorstuff.lua")
-		include(Tag.."initial/sh_teamsetup.lua")
+		include( Tag .. "module/colorfunc/sh_colorcc.lua" )		-- Color Chat and Console
+		include( Tag  .. "initial/sh_teamsetup.lua" )			-- Team Set-up
 	end)
 end

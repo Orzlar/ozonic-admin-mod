@@ -1,14 +1,22 @@
+--[==========================================================================================[
+										Ozonic Admin Mod
+							
+							File:			Player Set-up
+							
+							Desc:	PlayerSpawn and PlayerInitialSpawn hooks
+									To set-up players team and such
+									
+--]==========================================================================================]
 
--- PLAYER INITIAL SPAWN HOOK
 hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 
 	
-	
-	-- Search for user
+	--[=[
+		Find Player in MYSQL if not, Write them.
+	--]=]
 	local Query = [[ SELECT id,name,steamid,groupid,groupname,ptitle,IP FROM OZA_users WHERE steamid = '%s' ]]
 	local SQL = sql.Query( string.format(Query,ply:SteamID()) )
-	
-	-- Fill variables of SQL info
+
 	local ID
 	local name
 	local steamid
@@ -16,9 +24,7 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 	local IP
 	local groupid
 	local groupname
-	
-	
-	-- If User Exists
+
 	if(istable(SQL)) then
 		table.foreach(SQL, function(key, value)
 			ID = value["id"]
@@ -30,7 +36,6 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 			IP = value["IP"]
 		end)
 		
-		-- Check if NAME or IP has changed if so update them
 		local Update = false
 		if(name != ply:Nick()) then Update = true end
 		if(IP != ply:IPAddress( )) then Update = true end
@@ -40,11 +45,8 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 			local SQL = sql.Query( string.format(Query, ply:Name(), ply:IPAddress() ,steamid ) )
 		end
 		
-	
-	-- If User Does NOT Exist
 	else
 		
-		-- Fill variables with info FOR SQL
 		name = ply:Nick()
 		steamid = ply:SteamID()
 		ptitle = ""
@@ -56,17 +58,18 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 			end
 		end		
 
-		-- Insert into SQL
 		 local Query = [[INSERT INTO OZA_users(name,steamid,groupid,groupname,ptitle,IP) VALUES
 		('%s','%s','%s','%s','%s','%s')]]
 		local SQL = sql.Query( string.format(Query,name,steamid,groupid,groupname,ptitle,IP) )
 		
-		--GetID of Player
 		local Query = [[ SELECT id FROM OZA_users WHERE steamid = '%s' ]]
 		ID = sql.QueryValue( string.format(Query, steamid) )
 	end
 	
-	--OZA.users["steamid"] = {id, name, steamid, groupid,groupname, IP}
+	--[=[
+		Fill OZ.users with information gotten.
+	--]=]
+	
 	OZA.users[ply:SteamID()] = {}
 	OZA.users[ply:SteamID()]["ID"] = ID
 	OZA.users[ply:SteamID()]["name"] = name
@@ -75,7 +78,10 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 	OZA.users[ply:SteamID()]["groupname"] = groupname
 	OZA.users[ply:SteamID()]["IP"] = IP
 	
-	-- Sync Teams, and set team on join.
+	
+	--[=[
+		Wait 5 seconds before syncing teams ( gives a chance for things to get ready. )
+	--]=]
 	timer.Simple(5, function()
 		OZA.SyncTeams()
 	end)
@@ -85,7 +91,5 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 end)
 
 hook.Add("PlayerSpawn","ozamod-onspawn",function(ply)
-	
-	--Set Team on Spawn
 	ply:SetTeam( OZA.users[ply:SteamID()]["groupid"] )
 end)

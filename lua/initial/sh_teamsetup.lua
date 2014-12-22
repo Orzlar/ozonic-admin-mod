@@ -1,5 +1,11 @@
--- OZA.groups["groupname"] = {id, rank, GroupName, Color, DefaultTeam}
--- team.SetUp( number teamIndex, string teamName, table teamColor, boolean teamJoinable )
+--[==========================================================================================[
+										Ozonic Admin Mod
+							
+							File:			Team Set-up
+							
+							Desc:	Sets up team, and gives a sync function
+
+--]==========================================================================================]
 
 if SERVER then
 	util.AddNetworkString("teamsync")

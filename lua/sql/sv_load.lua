@@ -1,12 +1,16 @@
---------------------------------------------------------------------------
---						Ozonic Admin Mod								--
---																		--
---				File: Read and Write SQL								--
---				Info: Will read tables on start							--
---				Also every SQL function goes here						--
---------------------------------------------------------------------------
+--[==========================================================================================[
+										Ozonic Admin Mod
+							
+							File:			SQL Load Tables
+							
+							Desc:	Loads groups and perms on start.
 
--- GET ALL GROUPS ON SERVER START
+--]==========================================================================================]
+
+--[=[
+	Load GROUPS table
+--]=]
+
 local groups = sql.Query([[ SELECT id,rank,groupname,color,defaultteam FROM OZA_groups ]])
 if(istable(groups)) then
 
@@ -36,7 +40,10 @@ else
 	print( sql.LastError( ) )
 end
 
--- GET ALL PERMISSIONS FOR GROUP ON SERVER START
+--[=[
+	load GROUPPERMS table
+--]=]
+
 local groupperms = sql.Query([[ SELECT id,rank,usekey,canuse,cantarget FROM OZA_groupperms ]])
 if(istable(groupperms)) then
 	
@@ -52,7 +59,7 @@ if(istable(groupperms)) then
 			Perm["canuse"] = false
 		end
 		
-		Perm["cantarget"] = value["cantarget"]
+		Perm["cantarget"] = tonumber(value["cantarget"])
 		Perm["id"] = tonumber(value["id"])
 		
 		table.Add(OZA.groupperms[value["rank"]],{Perm})
