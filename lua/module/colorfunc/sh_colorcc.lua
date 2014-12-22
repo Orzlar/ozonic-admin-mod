@@ -20,14 +20,13 @@ if SERVER then
 		local Ply = {}
 		local Msg = {}
 		
-		table.foreach(Tab, function(key, value)
-		
-			if(IsEntity(value)) then
-				table.insert(Ply,value)
+		for k,v in pairs(Tab) do
+			if(IsEntity(v)) then
+				table.insert(Ply,v)
 			else
-				table.insert(Msg,value)
+				table.insert(Msg,v)
 			end
-		end)
+		end
 		
 		if(#Ply < 1) then Ply = player.GetAll() end
 		net.Start("colorchat")
@@ -49,14 +48,13 @@ if SERVER then
 		table.insert(Msg,OZA.tag.." ")
 		table.insert(Msg,OZA.color2)
 
-		table.foreach(Tab, function(key, value)
-		
-			if(IsEntity(value)) then
-				table.insert(Ply,value)
+		for k,v in pairs(Tab) do
+			if(IsEntity(v)) then
+				table.insert(Ply,v)
 			else
-				table.insert(Msg,value)
+				table.insert(Msg,v)
 			end
-		end)
+		end
 		
 		if(#Ply < 1) then Ply = player.GetAll() end
 		net.Start("colorchat")

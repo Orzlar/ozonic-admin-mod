@@ -26,15 +26,16 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 	local groupname
 
 	if(istable(SQL)) then
-		table.foreach(SQL, function(key, value)
-			ID = value["id"]
-			name = value["name"]
-			steamid = value["steamid"]
-			groupid = value["groupid"]
-			groupname = value["groupname"]
-			ptitle = value["ptitle"]
-			IP = value["IP"]
-		end)
+	
+		for k,v in pairs(SQL) do
+			ID = v["id"]
+			name = v["name"]
+			steamid = v["steamid"]
+			groupid = v["groupid"]
+			groupname = v["groupname"]
+			ptitle = v["ptitle"]
+			IP = v["IP"]
+		end
 		
 		local Update = false
 		if(name != ply:Nick()) then Update = true end
@@ -86,7 +87,20 @@ hook.Add("PlayerInitialSpawn","ozamod-onjoin",function(ply)
 		OZA.SyncTeams()
 	end)
 	
+	--[=[    SetTeam    --]=]
 	ply:SetTeam(groupid)
+	
+	
+	--[=[
+		Get User Permissions IF user has permissions.
+		OZA.userperms[steamid] = {id,steamid,usekey,canuse,cantarget}
+	--]=]
+	
+	local Query = [[ SELECT id,steamid,usekey,canuse,cantarget FROM OZA_userperms WHERE steamid = '%s' ]]
+	local SQL = sql.Query( string.format(Query, steamid )
+	if(istable(SQL)) then
+		
+	end
 	
 end)
 
