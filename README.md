@@ -1,7 +1,7 @@
 ozonic-admin-mod
 ================
 
-Just a simple Administration mod for Garrysmod, sandbox gamemode made exclusivally for Ozonic Server.
+Just a simple Administration mod for Garrysmod, sandbox gamemode made exclusively for Oz Serious Build.
 
 OZA functions (for use inside the mod)
 --------------------------------------
