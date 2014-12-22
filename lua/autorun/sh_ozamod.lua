@@ -40,7 +40,7 @@ if SERVER then
 	OZA.broadcasttag	= "Ozonic Admin Mod"
 	OZA.color1 			= Color(255, 150, 0)
 	OZA.color2 			= Color(100, 150, 200)
-	include("../version.lua")
+	OZ.version			= 7
 	
 	
 	--[=[
@@ -70,6 +70,7 @@ if SERVER then
 	include( "../module/sv_findplayer.lua" )				-- Useful FindPlayer commands
 	include( "../initial/sh_teamsetup.lua" )				-- Team Set-up
 	include( "../initial/sv_playersetup.lua" )				-- Player Set-up	
+	include( "../initial/sv_commandfunc.lua" )				-- AddCommand, CanUse, CanTarget,Console and Chat hooks
 end
 
 

@@ -20,7 +20,8 @@ if SERVER then
 	
 	for k,v in pairs(OZA.groups) do
 		team.SetUp(v["id"], v["groupname"], v["color"], true )
-		_G["TEAM_"..string.upper(v["groupname"])] = v["rank"]
+		_G["TEAM_"..string.upper(v["groupname"])] = v["id"]
+		_G["RANK_"..string.upper(v["groupname"])] = v["rank"]
 	end
 	
 end
@@ -30,7 +31,8 @@ if CLIENT then
 	net.Receive("teamsync", function(len)
 		for k,v in pairs(net.ReadTable()) do
 			team.SetUp(v["id"], v["groupname"], v["color"], true )
-			_G["TEAM_"..string.upper(v["groupname"])] = v["rank"]
+			_G["TEAM_"..string.upper(v["groupname"])] = v["id"]
+			_G["RANK_"..string.upper(v["groupname"])] = v["rank"]
 		end
 	end)
 	
